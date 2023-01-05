@@ -124,9 +124,12 @@ program black_hole
                 write(*,'(A)') "Error: Invalid option."
                 continue
             endif
-        end do
+        end if
+    end do
 
     ! Print goodbye message
-    write(*,'(A)') "Thank you for using the G-force calculator. Code created for Educational Purpose only, do not use it to navegate in to deep space. Code written by Andre Nemirovsky and Assistant. Licenced under MIT Licence."
+    write(*,'(A)') "Thank you for using the G-force calculator."
+    write(*,'(A)') "Code created for Educational Purpose only, do not use it to navegate in to deep space.."
+    write(*,'(A)') "Code written by Andre Nemirovsky and Assistant. Licenced under MIT Licence."
 
 end program black_hole
