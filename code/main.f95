@@ -129,7 +129,10 @@ program black_hole
 
     ! Print goodbye message
     write(*,'(A)') "Thank you for using the G-force calculator."
-    write(*,'(A)') "Code created for Educational Purpose only, do not use it to navegate in to deep space.."
+    delay = 1 ! Delay for 1 second
+    write(*,'(A)') "Code created for Educational Purpose only, do not use it to navegate in to deep space."
+    delay = 1 ! Delay for 1 second
     write(*,'(A)') "Code written by Andre Nemirovsky and Assistant. Licenced under MIT Licence."
+    delay = 2 ! Delay for 2 seconds
 
 end program black_hole
