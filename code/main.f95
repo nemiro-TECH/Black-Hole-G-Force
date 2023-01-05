@@ -127,6 +127,6 @@ program black_hole
         end do
 
     ! Print goodbye message
-    write(*,'(A)') "Thank you for using the G-force calculator. Code written by Andre Nemirovsky and Assistant."
+    write(*,'(A)') "Thank you for using the G-force calculator. Code created for Educational Purpose only, do not use it to navegate in to deep space. Code written by Andre Nemirovsky and Assistant. Licenced under MIT Licence."
 
 end program black_hole
