@@ -1,6 +1,9 @@
 # Black-Hole-G-Force
+
 Written in Fortran for Educational Purposes only,
 
-Some errors still occuring during tests.
+I wasn't able to recover the final program files, but I'm posting this draft to share.
 
-This code is not on permanente maintenence. If you chose to correct the compilation errors, make a pull request and than push to the main branch.
+Some errors still occur during compilation, but I haven't coded with fortran in years and don't have time to fix them right now.
+
+This code is not under permanent maintenance. If you chose to fix the build errors, make a pull request and push it to the master branch.
