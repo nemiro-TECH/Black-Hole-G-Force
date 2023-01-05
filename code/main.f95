@@ -80,56 +80,53 @@ program black_hole
         ! Check if distance is greater than Schwarzschild radius
         if (distance > schwarzschild_radius) then
             ! Calculate G-force
-            g_force = mass * 6.674E-11 / distance**2
+            g_force = 6.674E-11 * mass / distance**2
 
             ! Print result
             write(*,'(A,F5.2)') "The G-force is: ", g_force
-        else
-            ! Print error message
-            write(*,'(A)') "Error: The distance must be greater than the Schwarzschild radius."
-            continue
-        endif
 
-        ! Prompt user to save calculation report
-        write(*,'(A)') "Would you like to save the calculation report? (Y/N)"
-        read(*,'(A)') save_report
+            ! Prompt user to save calculation report
+            write(*,'(A)') "Do you want to save the calculation report to a file? (Y/N)"
+            read(*,'(A)') save_report
+            if (save_report .eq. "Y") then
+                ! Prompt user for filename
+                write(*,'(A)') "Enter the filename (including the file extension):"
+                read(*,'(A)') filename
 
-        if (save_report .eqv. "Y") then
-            ! Prompt user for filename
-            write(*,'(A)') "Enter the name of the file to save the report (including the .csv extension):"
-            read(*,'(A)') filename
-            ! Check if file already exists
-            if (iostat == 0) then
-                ! Prompt user to overwrite or append
-                write(*,'(A)') "The file already exists. Do you want to (O)verwrite or (A)ppend to it?"
-                read(*,'(A)') save_report
-                if (save_report .eqv. "O") then
-                    open(unit=10, file=filename, status='replace', action='write', iostat=iostat)
-                else if (save_report .eqv. "A") then
-                    open(unit=10, file=filename, status='old', action='write', iostat=iostat)
+                ! Open file
+                open(unit=10, file=filename, status='old', action='write', iostat=iostat)
+
+                ! Check if file already exists
+                if (iostat == 0) then
+                    ! Prompt user to overwrite or append
+                    write(*,'(A)') "The file already exists. Do you want to (O)verwrite or (A)ppend to it?"
+                    read(*,'(A)') save_report
+                    if (save_report .eq. "O") then
+                        open(unit=10, file=filename, status='replace', action='write', iostat=iostat)
+                    else if (save_report .eq. "A") then
+                        open(unit=10, file=filename, status='old', action='write', iostat=iostat)
+                    else
+                        ! Print error message
+                        write(*,'(A)') "Error: Invalid option."
+                        continue
+                    endif
                 else
-                    ! Print error message
-                    write(*,'(A)') "Error: Invalid option."
-                    continue
+                    ! Create new file
+                    open(unit=10, file=filename, status='new', action='write', iostat=iostat)
                 endif
-            else
-                ! Create new file
-                open(unit=10, file=filename, status='new', action='write', iostat=iostat)
-            endif
 
-            ! Write calculation report to file
-            write(10,'(A,F5.2,A,F5.2,A,F5.2)') "Mass (kg):,", mass, ",Distance (m):,", distance, ",G-force (N):,", g_force
-        else if (save_report .eqv. "N") then
-            ! Do nothing
-        else
-            ! Print error message
-            write(*,'(A)') "Error: Invalid option."
-            continue
-        endif
-    end do
+                ! Write calculation report to file
+                write(10,'(A,F5.2,A,F5.2,A,F5.2)') "Mass (kg):,", mass, ",Distance (m):,", distance, ",G-force (N):,", g_force
+            else if (save_report .eq. "N") then
+                ! Do nothing
+            else
+                ! Print error message
+                write(*,'(A)') "Error: Invalid option."
+                continue
+            endif
+        end do
 
     ! Print goodbye message
     write(*,'(A)') "Thank you for using the G-force calculator. Code written by [Your Name] and Assistant."
 
 end program black_hole
-
